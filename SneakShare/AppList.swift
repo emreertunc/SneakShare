@@ -37,7 +37,7 @@ struct AppList: View {
 
 struct AppList: View {
     // Updated version without logos
-    let apps = ["Instagram", "TikTok", "X (twitter)", "Amazon", "Trendyol", "Hepsiburada", ".. and any URL with trackers!"]
+    let apps = ["Instagram", "TikTok", "X (twitter)", "Amazon", "Trendyol", "Hepsiburada", "tinyurl.com", ".. and any URL with trackers!"]
 
     var body: some View {
         Text("Supported Apps")
