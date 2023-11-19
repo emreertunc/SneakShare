@@ -48,11 +48,14 @@ struct ContentView: View {
                 
                 Text("To share the content sneakily:")
                     .font(.title2)
+                    .fontWeight(.semibold)
                     .padding()
                 
                 HStack {
                     TextField("Enter your URL here", text: $inputURL)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .textFieldStyle(RoundedBorderTextFieldStyle())                        .background(Color.white)
+                            .cornerRadius(5)
+                            .shadow(radius: 3)
                 }
                 .padding()
                 
@@ -102,7 +105,10 @@ struct ContentView: View {
                             openURL(urlString: cleanedURL)
                         }
                         .padding()
+                        .transition(.slide)
+                        .animation(.easeInOut)
                         .disabled(cleanedURL.isEmpty)  // shortenedURL boşsa butonu devre dışı bırak
+                        
                     }
                     
                 }
@@ -200,7 +206,7 @@ struct ContentView: View {
                 }
                 else if processedURL == "unrecognized_format"{
                     // Hata mesajını ayarla ve yükleniyor durumunu kapat
-                    self.errorMessage = "The provided link is not in a recognized format or there is nothing to trim. You can use 'Request' menu for including this format."
+                    self.errorMessage = "The provided link is not in a recognized format or there is nothing to anonymize. You can use 'Request' menu for including this format."
                     self.isLoading = false
                 }
                 else {
