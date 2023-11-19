@@ -63,14 +63,21 @@ struct ContentView: View {
                         .padding()
                 }
                 
-                Button("Anonymize URL") {
-                    //klavyeyi kapat
+                Button(action: {
+                    // Klavyeyi kapat
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    //devam et
+                    // URL işlemeye devam et
                     processAndCopyURL()
+                })
+                {
+                    Text("Anonymize URL")
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
                 .padding()
-                
                 
                 // Kısaltılmış URL'i ve paylaş butonunu sadece varsa göster
                 if !cleanedURL.isEmpty {
@@ -313,7 +320,7 @@ struct ContentView: View {
         //guard let url = URL(string: "https://emreertunc.github.io/sneakshare_hostnames/hostnames.json")
         // üstteki orijinal link alttaki ile değiştirilerek URL'e rastgele bir sorgu parametresi ekleyerek, her istek için farklı bir URL oluşturuldu ve bu şekilde önbellek atlandı. URL'in sonuna bir timestamp eklendi.
         guard let url = URL(string: "https://emreertunc.github.io/sneakshare_hostnames/hostnames.json?timestamp=\(Date().timeIntervalSince1970)")
-
+                
         else { return [] }
         
         do {
