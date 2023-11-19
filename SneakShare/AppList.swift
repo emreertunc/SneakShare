@@ -7,11 +7,14 @@
 
 import SwiftUI
 
+//old version with logos
+/*
 struct AppList: View {
-    let apps = [
-           ("Instagram", "instagram_logo"), // Replace "instagram_logo" with the actual name of the Instagram logo asset
-           ("TikTok", "tiktok_logo"),       // Replace "tiktok_logo" with the actual name of the TikTok logo asset
-           ("X (twitter)", "twitter_logo")                  // Replace "x_logo" with the actual name of the X app logo asset
+
+   let apps = [
+           ("Instagram", "instagram_logo"),
+           ("TikTok", "tiktok_logo"),
+           ("X (twitter)", "twitter_logo")
        ]
 
        var body: some View {
@@ -21,7 +24,7 @@ struct AppList: View {
                .padding()
            List(apps, id: \.0) { app in
                HStack {
-                   Image(app.1) // Assumes logo images are in your asset catalog
+                   Image(app.1)
                        .resizable()
                        .scaledToFit()
                        .frame(width: 50, height: 50)
@@ -29,6 +32,24 @@ struct AppList: View {
                }
            }
        }
+}
+*/
+
+struct AppList: View {
+    // Updated version without logos
+    let apps = ["Instagram", "TikTok", "X (twitter)", "Amazon", "Trendyol", "Hepsiburada", ".. and any URL with trackers!"]
+
+    var body: some View {
+        Text("Supported Apps")
+            .multilineTextAlignment(.center)
+            .font(.title)
+            .padding()
+
+        // Using a List for simplicity
+        List(apps, id: \.self) { app in
+            Text(app)
+        }
+    }
 }
 
 #Preview {
