@@ -5,7 +5,7 @@
 "anonymize-url" = "Anonymize URL";
 "anonymized-url" = "Anonymized URL:";
 "share" = "Share";
-"open-in-browser" = "Open In Browser...";
+"open-in-browser" = "Open In Browser/App...";
 "copied-to-clipboard" = "Copied to clipboard";
 "buy-me-a-coffee" = "Buy Me a Coffee";
 "about" = "About";
@@ -30,13 +30,13 @@
 
 /*About.swift*/
 "about-sneakshare" = "About SneakShare";
-"hey-there" = "Hey there, welcome to SneakShare! I'm Emre, the developer behind this little yet mighty app. SneakShare is here to help you anonymize and share your URLs in a snap.";
+"hey-there" = "Hey there, welcome to SneakShare; this little yet mighty app. SneakShare is here to help you anonymize and share your URLs in a snap.";
 "whats-sneakshare" = "What's SneakShare?";
 "whats-sneakshare-answer" = "In a nutshell, SneakShare is an app that helps you share your URLs sneakily. Whether it's a link to a TikTok video, an Instagram post, or an advertisement and affiliation link for a product, SneakShare is here to assist in protecting your privacy.";
 "why-sneakshare" = "Why SneakShare?";
 "why-sneakshare-answer" = "Simple. Because privacy matters. SneakShare elevates your internet experience by ensuring that your shares are private and not linked with you.";
 "what-we-offer" = "What We Offer";
-"what-we-offer-answer" = "Privacy: We strip your URLs of any tracking parameters.\nEasy Sharing: We shorten your URLs for hassle-free sharing. (to be added)\nUser-Friendly: A simple and effective interface that's easy for everyone to use.";
+"what-we-offer-answer" = "Privacy: We strip your URLs of any tracking parameters.\nEasy Sharing: We shorten your URLs for hassle-free sharing. (to be added)";
 "labor-of-love" = "SneakShare is a labor of love from a curious developer. Although I'm working solo, I'm committed to keeping the app up-to-date and making it better. Your ideas and feedback are gold to me, so I'm all ears.";
 "get-in-touch" = "Get in Touch";
 "get-in-touch-answer" = "Have questions or suggestions? Drop me a line at emre@ertunc.com";

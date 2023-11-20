@@ -5,7 +5,7 @@
 "anonymize-url" = "URL'yi Anonimleştir";
 "anonymized-url" = "Anonimleştirilmiş URL:";
 "share" = "Paylaş";
-"open-in-browser" = "Tarayıcıda Aç...";
+"open-in-browser" = "Tarayıcıda/Uygulamada Aç...";
 "copied-to-clipboard" = "Panoya Kopyalandı";
 "buy-me-a-coffee" = "Destek Ol";
 "about" = "Hakkında";
@@ -30,13 +30,13 @@
 
 //About.swift
 "about-sneakshare" = "SneakShare Hakkında";
-"hey-there" ="SneakShare'a hoş geldiniz! Ben Emre, bu küçük ama güçlü uygulamanın arkasındaki geliştiriciyim. SneakShare, URL'lerinizi anonimleştirmenize ve hızlıca paylaşmanıza yardımcı olmak için burada.";
+"hey-there" ="SneakShare, URL'lerinizi anonimleştirmenize ve hızlıca paylaşmanıza yardımcı olmak için burada.";
 "whats-sneakshare" = "SneakShare Nedir?";
 "whats-sneakshare-answer" = "Özetle, SneakShare, URL'lerinizi gizlice paylaşmanıza yardımcı olan bir uygulamadır. İster bir TikTok videosu, bir Instagram post'u veya bir ürüne ait reklam ve ortaklık içeren bir bağlantı olsun, SneakShare gizliliğinizi korumak için yanınızdadır.";
 "why-sneakshare" = "Neden SneakShare?";
 "why-sneakshare-answer" = "Basit: Gizliliğiniz önemlidir. SneakShare, paylaşımlarınızın gizli kalmasını ve sizinle bağlantılı olmamasını sağlayarak internet deneyiminizi iyileştirir.";
 "what-we-offer" = "Sunduklarımız";
-"what-we-offer-answer" ="Gizlilik: URL'lerinizden herhangi bir izleme parametresini çıkarırız.\nKolay Paylaşım: Sorunsuz paylaşım için URL'lerinizi kısaltırız. (yakında)\nKullanıcı Dostu: Herkesin kullanımına uygun, basit ve etkili bir arayüz.";
-"labor-of-love" = "SneakShare, meraklı bir geliştiricinin yarattığı bir uygulamadır. Tek başıma çalışıyor olsam da, uygulamayı güncel tutmak ve daha iyi hale getirmeye çalışıyorum. Fikirleriniz ve geri bildirimleriniz benim için çok değerli, bu yüzden geri bildirimlerinize açığım.";
+"what-we-offer-answer" ="Gizlilik: URL'lerinizden herhangi bir izleme parametresini çıkarırız.\nKolay Paylaşım: Sorunsuz paylaşım için URL'lerinizi kısaltırız. (yakında)";
+"labor-of-love" = "SneakShare, meraklı bir geliştiricinin yarattığı bir uygulamadır. Tek başıma çalışıyor olsam da, uygulamayı güncel tutmak ve daha iyi hale getirmeye çalışıyorum. Fikirleriniz benim için çok değerli, bu yüzden geri bildirimlerinize açığım.";
 "get-in-touch" = "İletişime Geçin";
 "get-in-touch-answer" = "Sorularınız veya önerileriniz mi var? Bana emre@ertunc.com adresinden ulaşabilirsiniz.";
