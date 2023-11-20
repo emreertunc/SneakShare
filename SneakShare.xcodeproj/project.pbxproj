@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3232D332B0BAF95005C1A83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3232D352B0BAF95005C1A83 /* Localizable.strings */; };
 		C39BF9932B02DCBF0031C67C /* SneakShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39BF9922B02DCBF0031C67C /* SneakShareApp.swift */; };
 		C39BF9952B02DCBF0031C67C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39BF9942B02DCBF0031C67C /* ContentView.swift */; };
 		C39BF9972B02DCC00031C67C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C39BF9962B02DCC00031C67C /* Assets.xcassets */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C3232D342B0BAF95005C1A83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C3232D362B0BB313005C1A83 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C39BF98F2B02DCBF0031C67C /* SneakShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SneakShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39BF9922B02DCBF0031C67C /* SneakShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SneakShareApp.swift; sourceTree = "<group>"; };
 		C39BF9942B02DCBF0031C67C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 			children = (
 				C39BF9922B02DCBF0031C67C /* SneakShareApp.swift */,
 				C39BF9942B02DCBF0031C67C /* ContentView.swift */,
+				C3232D352B0BAF95005C1A83 /* Localizable.strings */,
 				C39BF9A22B02E5150031C67C /* Request.swift */,
 				C39BF9A02B02E4A00031C67C /* About.swift */,
 				C39BF9A62B02EB6A0031C67C /* BuyMeACoffee.swift */,
@@ -121,6 +125,7 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = C39BF9862B02DCBF0031C67C;
 			productRefGroup = C39BF9902B02DCBF0031C67C /* Products */;
@@ -138,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C39BF99A2B02DCC00031C67C /* Preview Assets.xcassets in Resources */,
+				C3232D332B0BAF95005C1A83 /* Localizable.strings in Resources */,
 				C39BF9972B02DCC00031C67C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -160,12 +166,25 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		C3232D352B0BAF95005C1A83 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3232D342B0BAF95005C1A83 /* en */,
+				C3232D362B0BB313005C1A83 /* tr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		C39BF99B2B02DCC00031C67C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -213,7 +232,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -229,6 +248,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -270,7 +290,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

@@ -40,288 +40,186 @@ struct ContentView: View {
     @State private var specialHosts: [String] = [] // specialhostnameleri jsondan çekmek için
     
     
+    
+    
     var body: some View {
+        navigationBody
+            .sheet(isPresented: $showingShareSheet) {
+                // Paylaşım ekranını göster
+                ActivityView(activityItems: [self.cleanedURL])
+            }
+            .sheet(isPresented: $showBuyMeACoffeePopup) {
+                BuyMeACoffee(isPresented: $showBuyMeACoffeePopup)
+            }
+            .onAppear {
+                //uygulama açılışında API üzerinden special host'ları çeker
+                Task {
+                    globalSpecialHosts = await fetchSpecialHosts()
+                }
+            }
+    }
+    
+    private var sharedBody: some View {
+        VStack {
+            
+            Spacer()
+            
+            Text("sneak-share-text")
+                .font(.title2)
+                .fontWeight(.semibold)
+                .padding()
+            
+            HStack {
+                TextField("enter-url", text: $inputURL)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())                        .background(Color.white)
+                    .cornerRadius(5)
+                    .shadow(radius: 3)
+            }
+            .padding()
+            
+            Button(action: {
+                // Klavyeyi kapat
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                // URL işlemeye devam et
+                processAndCopyURL()
+            })
+            {
+                Text("anonymize-url")
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            .padding()
+            
+            // Eğer yükleme durumundaysa bir ProgressView göster
+            if isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .padding()
+            }
+            
+            // Kısaltılmış URL'i ve paylaş butonunu sadece varsa göster
+            if !cleanedURL.isEmpty {
+                VStack(alignment: .center) {
+                    Text("anonymized-url")
+                    Text(cleanedURL)
+                        .padding(.bottom)
+                }
+                .padding()
+                
+                HStack{
+                    // Paylaş butonu
+                    Button(action: shareButtonPressed) {
+                        Text("share")
+                        Image(systemName: "square.and.arrow.up")
+                            .padding()
+                    }
+                    .disabled(cleanedURL.isEmpty)  // shortenedURL boşsa butonu devre dışı bırak
+                    
+                    // "Tarayıcıda Aç..." butonu
+                    Button("open-in-browser") {
+                        openURL(urlString: cleanedURL)
+                    }
+                    .padding()
+                    .transition(.slide)
+                    .animation(.easeInOut)
+                    .disabled(cleanedURL.isEmpty)  // shortenedURL boşsa butonu devre dışı bırak
+                    
+                }
+                
+            }
+            
+            if showingNotification {
+                Text("copied-to-clipboard")
+                    .padding()
+                    .background(Color.gray)
+                    .foregroundColor(Color.white)
+                    .cornerRadius(5)
+                    .transition(.scale)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            withAnimation {
+                                self.showingNotification = false
+                            }
+                        }
+                    }
+            }
+            if showingNotification {
+                // Bildirim metni ...
+            }
+            
+            // Hata mesajını göster
+            if !errorMessage.isEmpty {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .padding()
+            }
+            
+            Spacer()
+            
+            Button("buy-me-a-coffee") {
+                self.showBuyMeACoffeePopup = true
+            }
+            .foregroundColor(.orange)
+            .padding()
+            
+        }
+    }
+    
+    
+    @ViewBuilder
+    private var navigationBody: some View {
+        //NavigationStack sadece iOS 16 ve üzerinde çalıştığı için hamburger menü kullanmak için bu body kullanılıyor
+        
         if #available(iOS 16.0, *) {
-            //NavigationStack sadece iOS 16 ve üzerinde çalıştığı için hamburger menü kullanmak için body yerine bu kullanılıyor
-            navigationStackBody
-        } else {
-            // iOS 16 altında menü göstermeyen body kullanılıyor.
-            navigationViewBody
+            NavigationStack {
+                sharedBody
+                    .navigationBarTitle("", displayMode: .inline)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Menu {
+                                NavigationLink(destination: About()) {
+                                    Text("about")
+                                }
+                                NavigationLink(destination: AppList()) {
+                                    Text("supported-apps")
+                                }
+                                NavigationLink(destination: Request()) {
+                                    Text("request")
+                                }
+                            } label: {
+                                Label("Menu", systemImage: "line.horizontal.3")
+                            }
+                        }
+                    }
+            }
         }
-    }
-    
-    @available(iOS 16.0, *)
-    var navigationStackBody: some View {
-        //navigationview üstteki butonlar için eklendi
-        NavigationStack {
-            VStack {
-                
-                Spacer()
-                
-                Text("To share the content sneakily:")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .padding()
-                
-                HStack {
-                    TextField("Enter your URL here", text: $inputURL)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())                        .background(Color.white)
-                        .cornerRadius(5)
-                        .shadow(radius: 3)
-                }
-                .padding()
-                
-                // Eğer yükleme durumundaysa bir ProgressView göster
-                if isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
-                        .padding()
-                }
-                
-                Button(action: {
-                    // Klavyeyi kapat
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    // URL işlemeye devam et
-                    processAndCopyURL()
-                })
-                {
-                    Text("Anonymize URL")
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .padding()
-                
-                // Kısaltılmış URL'i ve paylaş butonunu sadece varsa göster
-                if !cleanedURL.isEmpty {
-                    VStack(alignment: .center) {
-                        Text("Anonymized URL:")
-                        Text(cleanedURL)
-                            .padding(.bottom)
-                    }
-                    .padding()
-                    
-                    HStack{
-                        // Paylaş butonu
-                        Button(action: shareButtonPressed) {
-                            Text("Share")
-                            Image(systemName: "square.and.arrow.up")
-                                .padding()
-                        }
-                        .disabled(cleanedURL.isEmpty)  // shortenedURL boşsa butonu devre dışı bırak
-                        
-                        // "Tarayıcıda Aç..." butonu
-                        Button("Open In Browser...") {
-                            openURL(urlString: cleanedURL)
-                        }
-                        .padding()
-                        .transition(.slide)
-                        .animation(.easeInOut)
-                        .disabled(cleanedURL.isEmpty)  // shortenedURL boşsa butonu devre dışı bırak
-                        
-                    }
-                    
-                }
-                
-                if showingNotification {
-                    Text("Copied to clipboard")
-                        .padding()
-                        .background(Color.gray)
-                        .foregroundColor(Color.white)
-                        .cornerRadius(5)
-                        .transition(.scale)
-                        .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                withAnimation {
-                                    self.showingNotification = false
+        else {
+            // iOS 16 altı için NavigationView
+            NavigationView {
+                sharedBody
+                    .navigationBarTitle("", displayMode: .inline)
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            HStack {
+                                NavigationLink(destination: About()) {
+                                    Text("About")
+                                }
+                                NavigationLink(destination: AppList()) {
+                                    Text("Supported Apps")
+                                }
+                                NavigationLink(destination: Request()) {
+                                    Text("Request")
                                 }
                             }
                         }
-                }
-                if showingNotification {
-                    // Bildirim metni ...
-                }
-                
-                // Hata mesajını göster
-                if !errorMessage.isEmpty {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                        .padding()
-                }
-                
-                Spacer()
-                
-                Button("Buy Me a Coffee") {
-                    self.showBuyMeACoffeePopup = true
-                }
-                .foregroundColor(.orange)
-                .padding()
-                
-            }
-            .navigationBarTitle("", displayMode: .inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu {
-                        NavigationLink(destination: About()) {
-                            Text("About")
-                        }
-                        NavigationLink(destination: AppList()) {
-                            Text("Supported Apps")
-                        }
-                        NavigationLink(destination: Request()) {
-                            Text("Request")
-                        }
-                    } label: {
-                        Label("Menu", systemImage: "line.horizontal.3")
                     }
-                }
-            }
-        }
-        .sheet(isPresented: $showingShareSheet) {
-            // Paylaşım ekranını göster
-            ActivityView(activityItems: [self.cleanedURL])
-        }
-        .sheet(isPresented: $showBuyMeACoffeePopup) {
-            BuyMeACoffee(isPresented: $showBuyMeACoffeePopup)
-        }
-        .onAppear {
-            //uygulama açılışında API üzerinden special host'ları çeker
-            Task {
-                globalSpecialHosts = await fetchSpecialHosts()
             }
         }
     }
     
-    var navigationViewBody: some View {
-        NavigationView {
-            VStack {
-                
-                Spacer()
-                
-                Text("To share the content sneakily:")
-                    .font(.title2)
-                    .fontWeight(.semibold)
-                    .padding()
-                
-                HStack {
-                    TextField("Enter your URL here", text: $inputURL)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())                        .background(Color.white)
-                        .cornerRadius(5)
-                        .shadow(radius: 3)
-                }
-                .padding()
-                
-                // Eğer yükleme durumundaysa bir ProgressView göster
-                if isLoading {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
-                        .padding()
-                }
-                
-                Button(action: {
-                    // Klavyeyi kapat
-                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                    // URL işlemeye devam et
-                    processAndCopyURL()
-                })
-                {
-                    Text("Anonymize URL")
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-                .padding()
-                
-                // Kısaltılmış URL'i ve paylaş butonunu sadece varsa göster
-                if !cleanedURL.isEmpty {
-                    VStack(alignment: .center) {
-                        Text("Anonymized URL:")
-                        Text(cleanedURL)
-                            .padding(.bottom)
-                    }
-                    .padding()
-                    
-                    HStack{
-                        // Paylaş butonu
-                        Button(action: shareButtonPressed) {
-                            Text("Share")
-                            Image(systemName: "square.and.arrow.up")
-                                .padding()
-                        }
-                        .disabled(cleanedURL.isEmpty)  // shortenedURL boşsa butonu devre dışı bırak
-                        
-                        // "Tarayıcıda Aç..." butonu
-                        Button("Open In Browser...") {
-                            openURL(urlString: cleanedURL)
-                        }
-                        .padding()
-                        .transition(.slide)
-                        .animation(.easeInOut)
-                        .disabled(cleanedURL.isEmpty)  // shortenedURL boşsa butonu devre dışı bırak
-                        
-                    }
-                    
-                }
-                
-                if showingNotification {
-                    Text("Copied to clipboard")
-                        .padding()
-                        .background(Color.gray)
-                        .foregroundColor(Color.white)
-                        .cornerRadius(5)
-                        .transition(.scale)
-                        .onAppear {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                                withAnimation {
-                                    self.showingNotification = false
-                                }
-                            }
-                        }
-                }
-                if showingNotification {
-                    // Bildirim metni ...
-                }
-                
-                // Hata mesajını göster
-                if !errorMessage.isEmpty {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                        .padding()
-                }
-                
-                Spacer()
-                
-                Button("Buy Me a Coffee") {
-                    self.showBuyMeACoffeePopup = true
-                }
-                .foregroundColor(.orange)
-                .padding()
-                
-            }
-            .navigationBarTitle("", displayMode: .inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu {
-                        NavigationLink(destination: About()) {
-                            Text("About")
-                        }
-                        NavigationLink(destination: AppList()) {
-                            Text("Supported Apps")
-                        }
-                        NavigationLink(destination: Request()) {
-                            Text("Request")
-                        }
-                    } label: {
-                        Label("Menu", systemImage: "line.horizontal.3")
-                    }
-                }
-            }
-        }
-    }
     
     func shareButtonPressed() {
         self.showingShareSheet = true
@@ -340,12 +238,18 @@ struct ContentView: View {
             DispatchQueue.main.async {
                 if processedURL.isEmpty {
                     // Hata mesajını ayarla ve yükleniyor durumunu kapat
-                    self.errorMessage = "The provided text is not in a recognized format. (Maybe missing 'http://' or 'https://' before link?)"
+                    
+                    // Yerelleştirilmiş metin
+                    let errormessage1 = NSLocalizedString("error-message-1", comment: "error message for localization")
+                    self.errorMessage = errormessage1
                     self.isLoading = false
                 }
                 else if processedURL == "unrecognized_format"{
                     // Hata mesajını ayarla ve yükleniyor durumunu kapat
-                    self.errorMessage = "The provided link is not in a recognized format or there is nothing to anonymize. You can use 'Request' menu for including this format."
+                    
+                    // Yerelleştirilmiş metin
+                    let errormessage2 = NSLocalizedString("error-message-2", comment: "error message for localization")
+                    self.errorMessage = errormessage2
                     self.isLoading = false
                 }
                 else {
@@ -494,18 +398,24 @@ struct ContentView: View {
         return originalURL
     }
     
-    
-}
-
-
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
 }
 
 // JSON Veri Modeli
 struct SpecialHosts: Codable {
     var links: [String]
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        //ContentView()
+        //tr ve en dil preview'ları eklendi
+        Group{
+            ContentView()
+                .environment(\.locale,
+                              Locale.init(identifier: "en"))
+            ContentView()
+                .environment(\.locale,
+                              Locale.init(identifier: "tr"))
+        }
+    }
 }

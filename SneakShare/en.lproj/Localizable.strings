@@ -1,0 +1,42 @@
+/*ContentView.swift*/
+"hello-string" = "hello world!";
+"sneak-share-text" = "To share the content sneakily:";
+"enter-url" = "Enter your URL here";
+"anonymize-url" = "Anonymize URL";
+"anonymized-url" = "Anonymized URL:";
+"share" = "Share";
+"open-in-browser" = "Open In Browser...";
+"copied-to-clipboard" = "Copied to clipboard";
+"buy-me-a-coffee" = "Buy Me a Coffee";
+"about" = "About";
+"supported-apps" = "Supported Apps";
+"request" = "Request";
+"error-message-1" = "The provided text is not in a recognized format. (Maybe missing 'http://' or 'https://' before link?)";
+"error-message-2" = "The provided link is not in a recognized format or there is nothing to anonymize. You can use 'Request' menu for including this format.";
+
+/*Request.swift*/
+"please-share-text" = "Please share the details of the format you would like the app to support. In order to use this function, the default Mail app of iOS must be installed on your device. If default Mail App is not installed and the Send Request button is greyed out, you can always contact me at 'emre@ertunc.com' ";
+"request-app" = "Requested App";
+"example-link" = "Example link (e.g. vm.tiktok.com/abcdef)";
+"send-request" = "Send Request";
+
+/*BuyMeACoffee.swift*/
+"if-you-like" = "If you like my app, you can support me through the links below to continue keeping my app on the App Store.";
+"donate-page" = "Donate page";
+"close" = "Close";
+
+/*AppList.swift*/
+"and-any-url" = ".. and any URL with trackers!";
+
+/*About.swift*/
+"about-sneakshare" = "About SneakShare";
+"hey-there" = "Hey there, welcome to SneakShare! I'm Emre, the developer behind this little yet mighty app. SneakShare is here to help you anonymize and share your URLs in a snap.";
+"whats-sneakshare" = "What's SneakShare?";
+"whats-sneakshare-answer" = "In a nutshell, SneakShare is an app that helps you share your URLs sneakily. Whether it's a link to a TikTok video, an Instagram post, or an advertisement and affiliation link for a product, SneakShare is here to assist in protecting your privacy.";
+"why-sneakshare" = "Why SneakShare?";
+"why-sneakshare-answer" = "Simple. Because privacy matters. SneakShare elevates your internet experience by ensuring that your shares are private and not linked with you.";
+"what-we-offer" = "What We Offer";
+"what-we-offer-answer" = "Privacy: We strip your URLs of any tracking parameters.\nEasy Sharing: We shorten your URLs for hassle-free sharing. (to be added)\nUser-Friendly: A simple and effective interface that's easy for everyone to use.";
+"labor-of-love" = "SneakShare is a labor of love from a curious developer. Although I'm working solo, I'm committed to keeping the app up-to-date and making it better. Your ideas and feedback are gold to me, so I'm all ears.";
+"get-in-touch" = "Get in Touch";
+"get-in-touch-answer" = "Have questions or suggestions? Drop me a line at emre@ertunc.com";

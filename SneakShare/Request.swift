@@ -17,19 +17,19 @@ struct Request: View {
 
     var body: some View {
         VStack {
-            Text("Please share the details of the format you would like the app to support. In order to use this function, the default Mail app of iOS must be installed on your device. If default Mail App is not installed and the Send Request button is greyed out, you can always contact me at 'emre@ertunc.com' ")
+            Text("please-share-text")
                 .font(.callout)
                 .padding()
 
-            TextField("Requested App", text: $requestedApp)
+            TextField("request-app", text: $requestedApp)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
 
-            TextField("Example link (e.g. vm.tiktok.com/abcdef)", text: $exampleLink)
+            TextField("example-link", text: $exampleLink)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
 
-            Button("Send Request") {
+            Button("send-request") {
                 self.isShowingMailView = true
             }
             .disabled(!MFMailComposeViewController.canSendMail())

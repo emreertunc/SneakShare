@@ -37,10 +37,17 @@ struct AppList: View {
 
 struct AppList: View {
     // Updated version without logos
-    let apps = ["Instagram", "TikTok", "X (twitter)", "Amazon", "Trendyol", "Hepsiburada", "tinyurl.com", ".. and any URL with trackers!"]
-
+    var apps: [String] = {
+        var tempApps = ["Instagram", "TikTok", "X (twitter)", "Amazon", "Trendyol", "Hepsiburada", "tinyurl.com"]
+        
+        // Yerelleştirilmiş metni listenin sonuna ekle
+        let localizedString = NSLocalizedString("and-any-url", comment: "Represents any URL with trackers")
+        tempApps.append(localizedString)
+        return tempApps
+    }()
+    
     var body: some View {
-        Text("Supported Apps")
+        Text("supported-apps")
             .multilineTextAlignment(.center)
             .font(.title)
             .padding()

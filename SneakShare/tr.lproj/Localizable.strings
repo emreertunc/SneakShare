@@ -1,0 +1,42 @@
+//ContentView.swift
+"hello-string" = "merhaba dünya!";
+"sneak-share-text" = "İçeriği gizlice paylaşmak için:";
+"enter-url" = "Buraya URL'nizi girin";
+"anonymize-url" = "URL'yi Anonimleştir";
+"anonymized-url" = "Anonimleştirilmiş URL:";
+"share" = "Paylaş";
+"open-in-browser" = "Tarayıcıda Aç...";
+"copied-to-clipboard" = "Panoya Kopyalandı";
+"buy-me-a-coffee" = "Destek Ol";
+"about" = "Hakkında";
+"supported-apps" = "Desteklenen Uygulamalar";
+"request" = "İstek";
+"error-message-1" = "Girilen metin tanınan bir formatta değil. (Bağlantıdan önce 'http://' veya 'https://' eksik olabilir mi?)";
+"error-message-2" = "Girilen bağlantı tanınan bir formatta değil ya da anonimleştirilecek bir şey yok. Bu formatı uygulamaya dahil etmek için 'İstek' menüsünü kullanabilirsiniz.";
+
+//Request.swift
+"please-share-text" = "Lütfen uygulamanın desteklemesini istediğiniz formatın detaylarını paylaşın. Bu fonksiyonu kullanabilmek için, cihazınızda iOS'un varsayılan Mail uygulamasının yüklü olması gerekmektedir. Varsayılan Mail Uygulaması yüklü değilse ve 'İstek Gönder' butonu gri renkte ise, her zaman 'emre@ertunc.com' adresinden bana ulaşabilirsiniz.";
+"request-app" = "Talep Edilen Uygulama";
+"example-link" = "Örnek bağlantı (örn. vm.tiktok.com/abcdef)";
+"send-request" = "İstek Gönder";
+
+//BuyMeACoffee.swift
+"if-you-like" = "Eğer uygulamamı beğendiyseniz, aşağıdaki bağlantı aracılığıyla bana destek olabilir ve uygulamamın App Store'da kalmasını sağlayabilirsiniz.";
+"donate-page" = "Destek Sayfası";
+"close" = "Kapat";
+
+//AppList.swift
+"and-any-url" = "... ve takip bağlantısı içeren herhangi bir URL!";
+
+//About.swift
+"about-sneakshare" = "SneakShare Hakkında";
+"hey-there" ="SneakShare'a hoş geldiniz! Ben Emre, bu küçük ama güçlü uygulamanın arkasındaki geliştiriciyim. SneakShare, URL'lerinizi anonimleştirmenize ve hızlıca paylaşmanıza yardımcı olmak için burada.";
+"whats-sneakshare" = "SneakShare Nedir?";
+"whats-sneakshare-answer" = "Özetle, SneakShare, URL'lerinizi gizlice paylaşmanıza yardımcı olan bir uygulamadır. İster bir TikTok videosu, bir Instagram post'u veya bir ürüne ait reklam ve ortaklık içeren bir bağlantı olsun, SneakShare gizliliğinizi korumak için yanınızdadır.";
+"why-sneakshare" = "Neden SneakShare?";
+"why-sneakshare-answer" = "Basit: Gizliliğiniz önemlidir. SneakShare, paylaşımlarınızın gizli kalmasını ve sizinle bağlantılı olmamasını sağlayarak internet deneyiminizi iyileştirir.";
+"what-we-offer" = "Sunduklarımız";
+"what-we-offer-answer" ="Gizlilik: URL'lerinizden herhangi bir izleme parametresini çıkarırız.\nKolay Paylaşım: Sorunsuz paylaşım için URL'lerinizi kısaltırız. (yakında)\nKullanıcı Dostu: Herkesin kullanımına uygun, basit ve etkili bir arayüz.";
+"labor-of-love" = "SneakShare, meraklı bir geliştiricinin yarattığı bir uygulamadır. Tek başıma çalışıyor olsam da, uygulamayı güncel tutmak ve daha iyi hale getirmeye çalışıyorum. Fikirleriniz ve geri bildirimleriniz benim için çok değerli, bu yüzden geri bildirimlerinize açığım.";
+"get-in-touch" = "İletişime Geçin";
+"get-in-touch-answer" = "Sorularınız veya önerileriniz mi var? Bana emre@ertunc.com adresinden ulaşabilirsiniz.";

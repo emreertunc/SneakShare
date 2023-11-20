@@ -13,17 +13,17 @@ struct BuyMeACoffee: View {
 
     var body: some View {
         VStack {
-            Text("Buy Me a Coffee")
+            Text("buy-me-a-coffee")
                 .font(.headline)
                 .padding()
 
             Text(
-                "If you like my app, you can support me through the links below to continue keeping my app on the App Store.")
+                "if-you-like")
                 .multilineTextAlignment(.center)
                 .padding()
 
             // Bağış linki veya butonu
-            Button("Buy me a coffee") {
+            Button("buy-me-a-coffee") {
                 // Örnek URL
                 if let url = URL(string: "https://www.buymeacoffee.com/emreertunc") {
                     openURL(url)
@@ -32,10 +32,10 @@ struct BuyMeACoffee: View {
             .padding()
 
             // Alternatif olarak Link bileşeni kullanılabilir
-            Link("Donate page", destination: URL(string: "https://www.buymecoffee.com/")!)
+            Link("donate-page", destination: URL(string: "https://www.buymecoffee.com/")!)
                 .padding()
 
-            Button("Close") {
+            Button("close") {
                 self.isPresented = false
             }
             .foregroundColor(.red)
